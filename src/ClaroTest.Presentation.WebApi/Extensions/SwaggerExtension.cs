@@ -18,10 +18,8 @@ public static class SwaggerExtension
                 Contact = new OpenApiContact { Name = "ClaroTest" }
             });
 
-            // Generamos identificadores de esquema legibles para tipos genéricos
-            // (ej: Response<IReadOnlyList<AuthorViewModel>> => Response_IReadOnlyList_AuthorViewModel).
-            // Usar type.FullName produce nombres con backticks, comas y signos = que Swagger UI
-            // no puede resolver como $ref, lo que causa el error "Unable to render this definition".
+            // Identificadores de esquema legibles para tipos genéricos
+            // (Response<IReadOnlyList<AuthorViewModel>> => ResponseOfIReadOnlyListOfAuthorViewModel).
             options.CustomSchemaIds(BuildSchemaId);
         });
 
@@ -42,29 +40,7 @@ public static class SwaggerExtension
 
     public static IApplicationBuilder UseSwaggerExtension(this IApplicationBuilder app)
     {
-        // Inyectamos no-cache en la ruta de Swagger para evitar que un bundle antiguo
-        // del navegador o un swagger.json cacheado provoque "Unable to render this definition".
-        app.Use(async (context, next) =>
-        {
-            if (context.Request.Path.StartsWithSegments("/swagger"))
-            {
-                context.Response.OnStarting(() =>
-                {
-                    context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
-                    context.Response.Headers["Pragma"] = "no-cache";
-                    context.Response.Headers["Expires"] = "0";
-                    return Task.CompletedTask;
-                });
-            }
-            await next();
-        });
-
-        app.UseSwagger(options =>
-        {
-            // Forzamos la serialización al formato OpenAPI 3.0, el más universalmente compatible
-            // con todas las builds de Swagger UI (incluyendo cualquier versión cacheada).
-            options.SerializeAsV2 = false;
-        });
+        app.UseSwagger();
 
         app.UseSwaggerUI(options =>
         {

@@ -13,7 +13,7 @@ API REST en .NET 9 que actúa como **proxy** entre el frontend y la API pública
 | AutoMapper | 15.1.3 |
 | FluentValidation | 11.11.0 |
 | Asp.Versioning | 8.1.0 |
-| Swashbuckle (Swagger) | 7.2.0 |
+| Swashbuckle (Swagger) | 6.7.3 |
 | Microsoft.Extensions.Http.Resilience (Polly) | 9.0.0 |
 | xUnit + Moq + FluentAssertions | latest |
 
@@ -196,4 +196,4 @@ Total: **14 tests, 0 fallos**.
 - **`Response<T>` siempre** — el frontend tiene un contrato uniforme, sin parsear status codes para casos felices.
 - **CQRS aunque el dominio sea simple** — habilita escalabilidad: agregar nuevos casos de uso es crear una nueva carpeta `Features/...`, no tocar handlers existentes.
 - **FluentValidation sobre DataAnnotations** — el pipeline behavior aplica validación uniformemente sin "ensuciar" controllers ni ViewModels.
-- **Pinning de `Microsoft.OpenApi 1.6.24`** — Swashbuckle 7.2 todavía no soporta la API rota de OpenApi 2.x; cuando Swashbuckle libere una versión compatible se puede subir.
+- **Swashbuckle 6.7.3 en lugar de 7.x** — Swashbuckle 7.x emite `openapi: 3.0.4`, una versión muy reciente del spec que algunos bundles de Swagger UI todavía no parsean correctamente y produce el error "Unable to render this definition". 6.7.3 emite `openapi: 3.0.1`, el más universalmente compatible. Sin dependencia directa a `Microsoft.OpenApi`.
