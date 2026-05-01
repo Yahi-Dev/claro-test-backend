@@ -1,0 +1,73 @@
+@host = http://localhost:5099
+
+### Libros — listado
+GET {{host}}/api/Books
+Accept: application/json
+
+### Libros — obtener por id
+GET {{host}}/api/Books/1
+Accept: application/json
+
+### Libros — crear
+POST {{host}}/api/Books
+Content-Type: application/json
+
+{
+  "title": "Libro de ejemplo",
+  "description": "Un libro de ejemplo creado desde el archivo .http.",
+  "pageCount": 250,
+  "excerpt": "Lorem ipsum dolor sit amet.",
+  "publishDate": "2026-01-15T00:00:00Z"
+}
+
+### Libros — actualizar
+PUT {{host}}/api/Books/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "Libro actualizado",
+  "description": "Descripción actualizada.",
+  "pageCount": 300,
+  "excerpt": "Extracto actualizado.",
+  "publishDate": "2026-02-01T00:00:00Z"
+}
+
+### Libros — eliminar
+DELETE {{host}}/api/Books/1
+
+### Autores — listado (con bookCount agregado)
+GET {{host}}/api/Authors
+Accept: application/json
+
+### Autores — obtener por id
+GET {{host}}/api/Authors/1
+Accept: application/json
+
+### Autores — por libro
+GET {{host}}/api/Authors/by-book/1
+Accept: application/json
+
+### Autores — crear
+POST {{host}}/api/Authors
+Content-Type: application/json
+
+{
+  "idBook": 1,
+  "firstName": "Ada",
+  "lastName": "Lovelace"
+}
+
+### Autores — actualizar
+PUT {{host}}/api/Authors/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "idBook": 1,
+  "firstName": "Ada",
+  "lastName": "Lovelace"
+}
+
+### Autores — eliminar
+DELETE {{host}}/api/Authors/1

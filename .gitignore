@@ -1,0 +1,73 @@
+# ─── .NET / Visual Studio ───────────────────────────────────────────────
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Bb]uild/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+*.suo
+*.user
+*.userprefs
+*.userosscache
+*.sln.docstates
+*.cache
+*.swp
+*.tmp
+*.dll.config
+
+# ─── Visual Studio cache / IDE ──────────────────────────────────────────
+.vs/
+.vscode/
+*.vscode/
+*.code-workspace
+
+# ─── Rider / JetBrains ──────────────────────────────────────────────────
+.idea/
+*.iml
+*.sln.iml
+
+# ─── Test / Coverage / Benchmarks ───────────────────────────────────────
+TestResults/
+[Tt]est[Rr]esults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+BenchmarkDotNet.Artifacts/
+
+# ─── NuGet ──────────────────────────────────────────────────────────────
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!packages/build/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ─── Publish / Deploy ───────────────────────────────────────────────────
+publish/
+PublishProfiles/
+*.pubxml.user
+*.publishsettings
+
+# ─── Configuración local (nunca subir secretos) ─────────────────────────
+appsettings.Local.json
+appsettings.*.Local.json
+*.env
+*.env.local
+secrets.json
+
+# ─── SO / editores ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ─── Misc ───────────────────────────────────────────────────────────────
+*.log
+*.tlog
+*.tmp_proj
+.history/
