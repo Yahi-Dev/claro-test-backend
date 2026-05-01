@@ -25,11 +25,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseRouting();
 
-// CORS debe ir antes de UseAuthorization para que las peticiones del frontend
-// en otro origen reciban las cabeceras Access-Control-* correctamente.
-// No usamos UseHttpsRedirection porque genera 307 sobre las peticiones HTTP del
-// frontend (rompe CORS preflight y obliga a confiar el certificado dev). En
-// producción la terminación TLS la hace un reverse proxy delante del API.
 app.UseCors(CorsExtension.PolicyName);
 app.UseAuthorization();
 
